@@ -1,34 +1,3 @@
-var swiper = new Swiper('.mySwiper', {
-    slidesPerView: 1,
-    spaceBetween: 15,
-    freeMode: true,
-
-    pagination: {
-        // el: '.swiper-pagination',
-        clickable: false,
-    },
-
-    navigation: {
-        nextEl: ".swiper-button-next-custom",
-        prevEl: ".swiper-button-prev-custom",
-    },
-
-    breakpoints: {
-        320: {
-            slidesPerView: 1,
-            spaceBetween: 15
-        },
-        640: {
-            slidesPerView: 2,
-            spaceBetween: 20
-        },
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 30
-        }
-    }
-});
-
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
@@ -44,11 +13,12 @@ menuBtn.addEventListener('click', function() {
 });
 
 
+
 const mailErr = document.getElementById('mail');
 const emailErr = document.getElementById('emailError');
 let mailFlag = false;
 
-mailErr.addEventListener('keyup', function validateEmail() {
+function validateEmail() {
     let email = mailErr.value;
     let pattern = /^[a-zA-Z0-9_%+-]+(\.[a-zA-Z0-9_%+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/;
 
@@ -76,21 +46,24 @@ mailErr.addEventListener('keyup', function validateEmail() {
         emailErr.innerText = "Valid Email";
         mailFlag = true;
     }
-});
+}
+
+mailErr.addEventListener('keyup', validateEmail);
 
 document.getElementById('emailLink').addEventListener('click', function(e) {
     e.preventDefault();
 
-    let email = mailErr.value;
+    validateEmail();
 
-    if (email == "") {
-        mailFlag = false;
-        emailErr.innerText = "Please enter a valid email address";
-    }
-    else if (mailFlag == true) {
-        window.open("./success.html", "_blank");
-    }
-    else {
-        emailErr.innerText = "Please enter a valid email address";
+    if (mailFlag == true) {
+        if (window.location.pathname.includes("about.html")) {
+            window.open("./aboutSuccess.html?page=about", "_blank");
+        }
+        else if (window.location.pathname.includes("services.html")) {
+            window.open("./serviceSuccess.html?page=services", "_blank");
+        }
+        else if(window.location.pathname.includes("blog.html")) {
+            window.open("./blogSuccess.html?page=blog", "_blank");
+        }
     }
 });
