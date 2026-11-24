@@ -47,12 +47,36 @@ function validateEmail() {
         mailFlag = true;
     }
 }
+<<<<<<< HEAD
+=======
 
 mailErr.addEventListener('keyup', validateEmail);
+>>>>>>> 7c6f844e28250065fa20dd17462596ffd65e4506
 
-document.getElementById('emailLink').addEventListener('click', function(e) {
-    e.preventDefault();
+// mailErr.addEventListener('keyup', validateEmail);
 
+<<<<<<< HEAD
+// document.getElementById('emailLink').addEventListener('click', function(e) {
+//     e.preventDefault();
+
+//     validateEmail();
+
+    // if (mailFlag == true) {
+    //     if(window.location.pathname.includes("index.html")) {
+    //         window.open("./")
+    //     }
+    //     if (window.location.pathname.includes("about.html")) {
+    //         window.open("./aboutSuccess.html?page=about", "_blank");
+    //     }
+    //     else if (window.location.pathname.includes("services.html")) {
+    //         window.open("./serviceSuccess.html?page=services", "_blank");
+    //     }
+    //     else if(window.location.pathname.includes("blog.html")) {
+    //         window.open("./blogSuccess.html?page=blog", "_blank");
+    //     }
+    // }
+// });
+=======
     validateEmail();
 
     if (mailFlag == true) {
@@ -67,3 +91,4 @@ document.getElementById('emailLink').addEventListener('click', function(e) {
         }
     }
 });
+>>>>>>> 7c6f844e28250065fa20dd17462596ffd65e4506
