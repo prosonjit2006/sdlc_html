@@ -48,22 +48,25 @@ function validateEmail() {
     }
 }
 
-mailErr.addEventListener('keyup', validateEmail);
+// mailErr.addEventListener('keyup', validateEmail);
 
-document.getElementById('emailLink').addEventListener('click', function(e) {
-    e.preventDefault();
+// document.getElementById('emailLink').addEventListener('click', function(e) {
+//     e.preventDefault();
 
-    validateEmail();
+//     validateEmail();
 
-    if (mailFlag == true) {
-        if (window.location.pathname.includes("about.html")) {
-            window.open("./aboutSuccess.html?page=about", "_blank");
-        }
-        else if (window.location.pathname.includes("services.html")) {
-            window.open("./serviceSuccess.html?page=services", "_blank");
-        }
-        else if(window.location.pathname.includes("blog.html")) {
-            window.open("./blogSuccess.html?page=blog", "_blank");
-        }
-    }
-});
+    // if (mailFlag == true) {
+    //     if(window.location.pathname.includes("index.html")) {
+    //         window.open("./")
+    //     }
+    //     if (window.location.pathname.includes("about.html")) {
+    //         window.open("./aboutSuccess.html?page=about", "_blank");
+    //     }
+    //     else if (window.location.pathname.includes("services.html")) {
+    //         window.open("./serviceSuccess.html?page=services", "_blank");
+    //     }
+    //     else if(window.location.pathname.includes("blog.html")) {
+    //         window.open("./blogSuccess.html?page=blog", "_blank");
+    //     }
+    // }
+// });

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="./favicon/android-chrome-512x512.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../src/output.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css" />
+
+
+</head>
+
+<body>
+    <header class="w-full bg-white overflow-x-hidden">
+        <div class="mx-auto flex max-w-295 items-center justify-between gap-3 px-3 py-4 sm:px-5 sm:py-5 lg:px-10">
+
+            <div class="shrink-0 text-[13px] font-extrabold tracking-[-0.5px]">
+                <a href="../pages/contact.html" target="_self">
+                    <img src="../blog_images/navlogo.png" alt="" class="w-24 max-w-full sm:w-32 md:w-auto">
+                </a>
+            </div>
+
+            <nav
+                class="hidden items-center gap-4 text-[12px] font-semibold text-gray-600 md:flex lg:gap-8 lg:text-[14px] xl:gap-12">
+                <a href="./index.html" class="hover:text-black">Home</a>
+
+                <a href="../pages/about.html" target="_self">
+                    About Us
+                </a>
+
+                <a href="../pages/services.html" target="_self">Services</a>
+                <a href="../pages/blog.html" target="_self" class="hover:text-black  border-black px-3 py-1">Blog</a>
+                <a href="contact.html" target="_self" class="hover:text-black rounded-4xl border px-2 py-1">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+
+                <a href="../pages/blog.html"
+                    class="shrink-0 rounded-full bg-black px-3 py-2 text-[11px] font-medium text-white sm:px-4 sm:text-[12px]">
+                    Sign in
+                </a>
+
+                <button id="menuBtn"
+                    class="flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 text-black md:hidden"
+                    type="button">
+                    <i class="fa-solid fa-bars text-[15px]"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="mobileMenu" class="hidden border-t border-gray-200 bg-white px-5 py-4 md:hidden">
+
+            <nav class="flex flex-col gap-4 text-[13px] font-semibold text-gray-600">
+
+                <a href="./index.html" target="_self" class="hover:text-black">
+                    Home
+                </a>
+
+                <a href="../pages/about.html" target="_self" class="hover:text-black">
+                    About Us
+                </a>
+
+                <a href="../pages/services.html" target="_self" class="hover:text-black">
+                    Services
+                </a>
+
+                <a href="../pages/blog.html" target="_self" class="w-fit border-black px-3 py-1 hover:text-black">
+                    Blog
+                </a>
+
+                <a href="contact.html" target="_self" class="hover:text-black rounded-4xl border w-20 px-4 py-1">
+                    Contact
+                </a>
+
+            </nav>
+
+        </div>
+    </header>
+    <main class="overflow-x-hidden">
+        <section
+            class="w-full overflow-x-hidden bg-[#fcfbff] pb-20 pt-14 font-['Inter',sans-serif] antialiased text-black">
+
+            <div class="mx-auto flex flex-col items-center px-5 text-center">
+
+                <p class="text-[18px] leading-5.5 font-normal text-[#777]">Contact</p>
+
+                <h1
+                    class="mt-2.5 max-w-120 text-[30px] font-normal leading-9 tracking-[-0.8px] text-black min-[400px]:text-[38px] min-[400px]:leading-11 sm:text-[54px] sm:leading-15">
+                    Let's Talk About Your Digital Growth
+                </h1>
+
+                <p class="mt-6.5 max-w-92.5 text-[13px] leading-5 text-[#5b5b5b]">
+                    Our team is here to respond to your enquiries and help you connect with the right digital
+                    service providers to scale your business.
+                </p>
+            </div>
+
+            <div
+                class="mx-auto mt-14 grid w-full max-w-100 grid-cols-1 items-start gap-12 px-5 sm:mt-20 md:mt-30 md:max-w-none md:w-fit md:grid-cols-[270px_300px] md:gap-x-12.5 md:gap-y-0 md:px-0">
+
+                <div class="min-w-0 pt-0.75 md:w-67.5">
+
+                    <h2
+                        class="text-[30px] font-normal leading-9 tracking-[-0.3px] text-black sm:text-[38px] sm:leading-11">
+                        Get in Touch
+                    </h2>
+
+                    <p class="mt-4 max-w-67.5 text-[12.6px] leading-5.75 text-[#6b6b6b]">
+                        Have a specific question or ready to start a project? Reach out through any of these
+                        channels or fill out the form.
+                    </p>
+
+                    <div class="mt-14.5 flex flex-col gap-5">
+
+                        <div
+                            class="flex h-20 items-center gap-4 rounded-[14px] border border-[#f1f1f6] bg-white pl-4 pr-4 shadow-[0_2px_10px_rgba(20,20,60,0.05)] sm:pl-6">
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#c0e3fb] text-[#111]">
+                                <img src="../contact_images/email.svg" alt=""
+                                    class="block h-5 w-5 shrink-0 object-contain sm:h-4.5 sm:w-4.5 md:h-5 md:w-5">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[9px] uppercase leading-3 tracking-[0.3px] text-[#777]">Email us</p>
+                                <p
+                                    class="mt-1.5 whitespace-nowrap text-[16px] leading-5 text-black max-[360px]:text-[14px]">
+                                    hello@smartlead.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex h-20 items-center gap-4 rounded-[14px] border border-[#f1f1f6] bg-white pl-4 pr-4 shadow-[0_2px_10px_rgba(20,20,60,0.05)] sm:pl-6">
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#c0e3fb] text-[#111]">
+                                <img src="../contact_images/phone.svg" alt=""
+                                    class="block h-5 w-5 shrink-0 object-contain sm:h-4.5 sm:w-4.5 md:h-5 md:w-5">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[9px] uppercase leading-3 tracking-[0.3px] text-[#777]">Call us</p>
+                                <p
+                                    class="mt-1.5 whitespace-nowrap text-[16px] leading-5 text-black max-[360px]:text-[14px]">
+                                    +91 00000 12345</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex h-21 items-center gap-4 rounded-[14px] border border-[#f1f1f6] bg-white pl-4 pr-4 shadow-[0_2px_10px_rgba(20,20,60,0.05)] sm:pl-6">
+                            <div
+                                class="flex h-10 w-6.5 shrink-0 items-center justify-center rounded-full bg-[#c0e3fb] text-[#111]">
+                                <img src="../contact_images/location.svg" alt=""
+                                    class="block h-5 w-5 shrink-0 object-contain sm:h-4.5 sm:w-4.5 md:h-5 md:w-5">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[9px] uppercase leading-3 tracking-[0.3px] text-[#777]">Visit us</p>
+                                <p class="mt-1 text-[13.5px] leading-4.25 text-black">
+                                    12 Innovation Avenue, Sector V, Salt Lake
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-9.5 flex items-center gap-2 text-[10.5px] leading-3.5 text-[#666]">
+                        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-[#22c55e]"></span>
+                        <span>Business hours: Mon — Fri, 9:00 AM — 6:00 PM</span>
+                    </div>
+                </div>
+
+                <form id="contactForm" action="#" method="post"
+                    class="w-full rounded-3xl bg-white px-5 pb-10.5 pt-10.25 shadow-[0_8px_36px_rgba(20,20,60,0.08)] sm:px-10 md:w-75">
+
+                    <h3 class="mb-7.25 text-[23px] font-normal leading-6.5 text-black">
+                        Send us a message
+                    </h3>
+
+                    <div class="grid grid-cols-1 gap-x-5 gap-y-5.75 sm:grid-cols-2">
+
+                        <div class="min-w-0">
+                            <label for="fullName" class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Full
+                                name</label>
+                            <input type="text" id="fullName" placeholder="John Doe"
+                                class="block h-9.5 w-full appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 text-[11px] text-black outline-none placeholder:text-[#a9acbd] focus:ring-1 focus:ring-[#d4d6e2]">
+                        </div>
+
+                        <div class="min-w-0">
+                            <label for="workEmail" class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Work
+                                email</label>
+                            <input type="email" id="workEmail" placeholder="john@company.com"
+                                class="block h-9.5 w-full appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 text-[11px] text-black outline-none placeholder:text-[#a9acbd] focus:ring-1 focus:ring-[#d4d6e2]">
+                        </div>
+
+                        <div class="min-w-0">
+                            <label for="phone" class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Phone
+                                number</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 000-0000"
+                                class="block h-9.5 w-full appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 text-[11px] text-black outline-none placeholder:text-[#a9acbd] focus:ring-1 focus:ring-[#d4d6e2]">
+                        </div>
+
+                        <div class="min-w-0">
+                            <label for="company" class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Company
+                                name</label>
+                            <input type="text" id="company" placeholder="Your Company"
+                                class="block h-9.5 w-full appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 text-[11px] text-black outline-none placeholder:text-[#a9acbd] focus:ring-1 focus:ring-[#d4d6e2]">
+                        </div>
+
+                        <div class="min-w-0 sm:col-span-2">
+                            <label for="service" class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Service you
+                                are interested in</label>
+                            <select id="service"
+                                class="block h-9.5 w-full appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 text-[11px] text-black outline-none focus:ring-1 focus:ring-[#d4d6e2]">
+                                <option>Web Development</option>
+                                <option>Mobile App Solution</option>
+                                <option>UI/UX Strategy</option>
+                                <option>Digital Marketing</option>
+                                <option>AI &amp; Data Science</option>
+                            </select>
+                        </div>
+
+                        <div class="min-w-0 sm:col-span-2">
+                            <label for="message"
+                                class="mb-1.75 block text-[11px] leading-3.5 text-[#666]">Message</label>
+                            <textarea id="message" placeholder="Tell us about your project..."
+                                class="block h-20.5 w-full resize-none appearance-none rounded-lg border-0 bg-[#f8f9fe] px-4 py-3 text-[11px] leading-3.5 text-black outline-none placeholder:text-[#a9acbd] focus:ring-1 focus:ring-[#d4d6e2]"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="mt-8 flex h-11.5 w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-black text-[12px] font-medium text-white transition hover:bg-[#222]">
+                        Send Message
+                        <svg class="block h-2.75 w-2.75" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </form>
+
+            </div>
+        </section>
+        <footer class="overflow-x-hidden bg-black text-white">
+
+            <div class="mx-auto max-w-350 px-5 py-12 lg:px-10">
+
+                <div class="grid grid-cols-1 gap-8 min-[480px]:grid-cols-2 lg:grid-cols-4">
+
+                    <div class="min-w-0">
+                        <div class="font-extrabold tracking-[-0.5px] text-white">
+                            <a href="../pages/about.html" target="_self">
+                                <img src="../about_images/footer-logo.png" alt="" class="max-w-full">
+                            </a>
+                        </div>
+
+                        <p class="mt-4 max-w-45 text-[12px] leading-4 text-white-400">
+                            The world's leading Al-powered platform for connecting businesses with exceptional digital
+                            service providers.
+                        </p>
+
+                        <div class="mt-5 flex gap-5">
+                            <a href="https://in.linkedin.com/" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+
+                            <a href="https://x.com/?lang=en" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/?hl=en" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Quick Links
+                        </h4>
+
+                        <div class="flex flex-col gap-2 text-[13px] text-white-400">
+                            <a href="index.html">Home</a>
+                            <a href="../pages/about.html" target="_self">About Us</a>
+                            <a href="../pages/services.html" target="_self">Services</a>
+                            <a href="../pages/blog.html" target="_self">Blog</a>
+                            <a href="contact.html" target="_self">Contact</a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Services
+                        </h4>
+
+                        <div class="flex flex-col gap-2 text-[13px] text-white-400">
+                            <a href="#">Web Development</a>
+                            <a href="#">Mobile App Solution</a>
+                            <a href="#">UI/UX Strategy</a>
+                            <a href="#">Digital Marketing</a>
+                            <a href="#">AI & Data Science</a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Contact Us
+                        </h4>
+
+                        <div class="flex flex-col gap-3 text-[13px] leading-5 text-white-400">
+                            <span class="wrap-break-word">
+                                <i class="fa-regular fa-envelope"></i>
+                                hello@smartlead.com
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-phone"></i>
+                                +91 00000 12345
+                            </span>
+
+                            <span class="wrap-break-word">
+                                <i class="fa-solid fa-location-dot"></i>
+                                12 Innovation Avenue, Sector V, Salt Lake
+                            </span>
+                        </div>
+
+                        <p class="mt-5">Subscribe to our NewsLetter</p>
+
+                        <div
+                            class="mt-5 flex w-full min-w-0 items-center justify-between gap-2 rounded-full border border-gray-700 px-3 py-2 text-[12px]">
+
+                            <div class="flex min-w-0 flex-1 items-center gap-2">
+                                <i class="fa-regular fa-envelope shrink-0"></i>
+                                <form action="" id="emailForm">
+                                    <input type="email" id="mail" placeholder="Enter your email address"
+                                        class="w-full min-w-0 bg-transparent outline-none">
+                                    <p id="emailError" style="color: red;"></p>
+                                </form>
+                            </div>
+
+                            <div class="shrink-0">
+                                <a href="" id="emailLink">
+                                    <i class="fa-solid fa-location-arrow"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mt-10 flex flex-col justify-between gap-5 border-t border-gray-800 pt-5 text-[13px] text-white md:flex-row md:items-center">
+
+                    <p>
+                        &copy; 2026 <a href="./about.html" target="_self">SmartLead</a>. All rights reserved.
+                    </p>
+
+                    <div class="flex flex-wrap gap-x-6 gap-y-3 md:gap-10">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookies Settings</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+        <script src="../js/script.js"></script>
+</body>
+
+</html>

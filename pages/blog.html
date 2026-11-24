@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+
+    <link rel="shortcut icon" href="./favicon/android-chrome-512x512.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../src/output.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css" />
+
+    <style>
+        .ideas-swiper .swiper-wrapper {
+            align-items: flex-start;
+        }
+
+        .ideas-swiper .swiper-slide {
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .ideas-swiper .idea-card {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .ideas-swiper .idea-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ideas-swiper .slide-narrow {
+            width: 176px;
+        }
+
+        .ideas-swiper .slide-wide {
+            width: 240px;
+        }
+
+        .ideas-swiper .slide-narrow .idea-card {
+            aspect-ratio: 86 / 95;
+        }
+
+        .ideas-swiper .slide-wide .idea-card {
+            aspect-ratio: 129 / 95;
+        }
+
+        .ideas-swiper .slide-wide.is-offset .idea-card {
+            aspect-ratio: 129 / 88;
+            margin-top: 6%;
+        }
+
+        @media (min-width: 640px) {
+            .ideas-swiper .slide-narrow {
+                width: 208px;
+            }
+
+            .ideas-swiper .slide-wide {
+                width: 288px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .ideas-swiper .slide-narrow {
+                width: calc((100% - 40px) * 16 / 96);
+            }
+
+            .ideas-swiper .slide-wide {
+                width: calc((100% - 40px) * 24 / 96);
+            }
+        }
+
+        .blog-wrap {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0 16px;
+        }
+
+        @media (min-width: 640px) {
+            .blog-wrap {
+                padding: 0 32px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .blog-wrap {
+                padding: 0 48px;
+            }
+        }
+
+        .blog-swiper {
+            overflow: hidden;
+        }
+
+        .blog-swiper .swiper-slide {
+            height: auto;
+        }
+
+        .blog-page {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: 20px;
+            row-gap: 43px;
+        }
+
+        @media (min-width: 640px) {
+            .blog-page {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .blog-page {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .blog-card {
+            min-width: 0;
+        }
+
+        .blog-card .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 10.5px;
+            line-height: 1;
+            color: #6b7280;
+        }
+
+        .blog-card .blog-title {
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #000;
+        }
+
+        .blog-card .blog-desc {
+            margin-bottom: 25px;
+            font-size: 10.5px;
+            line-height: 14px;
+            color: #6b7280;
+        }
+
+        .blog-card .blog-img {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 331 / 205;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .blog-card .blog-img img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-card .blog-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            padding: 0 20px;
+            border-radius: 9999px;
+            background: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            color: #000;
+            white-space: nowrap;
+        }
+
+        .blog-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .blog-pagination.swiper-pagination {
+            position: static;
+            width: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-pagination.swiper-pagination .swiper-pagination-bullet {
+            width: 30px;
+            height: 30px;
+            margin: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 1px solid #d1d5db;
+            background: transparent;
+            color: #6b7280;
+            font-size: 10px;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .blog-pagination.swiper-pagination .swiper-pagination-bullet-active {
+            background: #000;
+            border-color: #000;
+            color: #fff;
+        }
+
+        .blog-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .blog-nav button {
+            width: 47px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 9999px;
+            background: #bfe3ff;
+            color: #111;
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .blog-nav button.swiper-button-disabled {
+            background: #e5e5e5;
+            cursor: default;
+            pointer-events: none;
+        }
+    </style>
+
+</head>
+
+<body class="bg-[#fafafa] text-[#111111] overflow-x-hidden">
+    <header class="w-full bg-white overflow-x-hidden">
+        <div class="mx-auto flex max-w-295 items-center justify-between gap-3 px-3 py-4 sm:px-5 sm:py-5 lg:px-10">
+
+            <div class="shrink-0 text-[13px] font-extrabold tracking-[-0.5px]">
+                <a href="../pages/blog.html" target="_self">
+                    <img src="../blog_images/navlogo.png" alt="" class="w-24 max-w-full sm:w-32 md:w-auto">
+                </a>
+            </div>
+
+            <nav
+                class="hidden items-center gap-4 text-[12px] font-semibold text-gray-600 md:flex lg:gap-8 lg:text-[14px] xl:gap-12">
+                <a href="./index.html" class="hover:text-black">Home</a>
+
+                <a href="../pages/about.html" target="_self">
+                    About Us
+                </a>
+
+                <a href="../pages/services.html" target="_self">Services</a>
+                <a href="../pages/blog.html" target="_self"
+                    class="hover:text-black rounded-4xl border border-black px-3 py-1">Blog</a>
+                <a href="contact.html" target="_self" class="hover:text-black">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+
+                <a href="../pages/blog.html"
+                    class="shrink-0 rounded-full bg-black px-3 py-2 text-[11px] font-medium text-white sm:px-4 sm:text-[12px]">
+                    Sign in
+                </a>
+
+                <button id="menuBtn"
+                    class="flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 text-black md:hidden"
+                    type="button">
+                    <i class="fa-solid fa-bars text-[15px]"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="mobileMenu" class="hidden border-t border-gray-200 bg-white px-5 py-4 md:hidden">
+
+            <nav class="flex flex-col gap-4 text-[13px] font-semibold text-gray-600">
+
+                <a href="./index.html" target="_self" class="hover:text-black">
+                    Home
+                </a>
+
+                <a href="../pages/about.html" target="_self" class="hover:text-black">
+                    About Us
+                </a>
+
+                <a href="../pages/services.html" target="_self" class="hover:text-black">
+                    Services
+                </a>
+
+                <a href="../pages/blog.html" target="_self"
+                    class="w-fit rounded-4xl border border-black px-3 py-1 hover:text-black">
+                    Blog
+                </a>
+
+                <a href="contact.html" target="_self" class="hover:text-black">
+                    Contact
+                </a>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="overflow-x-hidden">
+        <section class="w-full bg-[#fcfafc] py-5 overflow-hidden">
+            <div class="w-full">
+
+                <div class="text-center px-4">
+
+                    <h2 class="text-4xl md:text-5xl font-normal text-black leading-tight max-w-2xl mx-auto">
+                        Insights, Ideas & Digital Growth
+                    </h2>
+
+                    <p class="text-xs text-gray-600 max-w-md mx-auto mt-5 leading-relaxed">
+                        Explore practical guides, digital service insights, and AI-powered strategies to help you
+                        discover the
+                        right solutions, manage customer enquiries, and make smarter business decisions.
+                    </p>
+
+                </div>
+
+                <div class="mt-10 px-2 sm:px-3">
+                    <div class="swiper ideas-swiper w-full">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide slide-narrow">
+                                <div class="idea-card">
+                                    <img src="../blog_images/idea1.png" alt="Team collaboration">
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide slide-wide is-offset">
+                                <div class="idea-card">
+                                    <img src="../blog_images/idea2.png" alt="Business team working">
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide slide-narrow">
+                                <div class="idea-card">
+                                    <img src="../blog_images/idea3.png" alt="Office meeting">
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide slide-wide">
+                                <div class="idea-card">
+                                    <img src="../blog_images/idea4.png" alt="Modern office workspace">
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide slide-narrow">
+                                <div class="idea-card">
+                                    <img src="../blog_images/idea5.png" alt="Team discussion">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="w-full bg-[#fdfcff] pt-30 px-10 text-center">
+
+            <div class="max-w-5xl mx-auto">
+
+                <p class="text-sm text-gray-400 mb-2">
+                    Blog
+                </p>
+
+                <h2 class="text-3xl font-medium text-black leading-tight mb-3">
+                    Insights & Ideas for Smarter <br class="hidden sm:block">
+                    Growth
+                </h2>
+
+                <p class="text-xs text-gray-500 leading-relaxed max-w-xl mx-auto">
+                    Explore practical guides, industry insights, and expert tips on digital services,
+                    lead management, and AI-powered solutions to make smarter business decisions.
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="w-full bg-[#fdfcff] py-10 sm:py-12 lg:py-16">
+            <div class="blog-wrap">
+
+                <div class="swiper blog-swiper">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="blog-page">
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>08-10-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">How to Choose the Right Digital Services</h3>
+                                    <p class="blog-desc">
+                                        Discover how to identify business needs, explore service options, and find
+                                        digital
+                                        solutions that align with your goals.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_1.png" alt="Digital Services">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>28-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">From Customer Enquiries to Business Leads</h3>
+                                    <p class="blog-desc">
+                                        Understand how enquiries become leads and how organized follow-ups can help
+                                        businesses manage potential opportunities.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_2.png" alt="Customer Enquiries">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>15-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">How AI Supports Lead Conversion Prediction</h3>
+                                    <p class="blog-desc">
+                                        Learn how machine learning can analyze lead data to estimate conversion
+                                        potential
+                                        and support smarter business decisions.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_3.png" alt="AI Lead Conversion">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>25-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Building a Better Customer Enquiry Journey</h3>
+                                    <p class="blog-desc">
+                                        Explore ways to make service enquiries simpler, clearer, and more convenient for
+                                        potential customers.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_4.png" alt="Customer Journey">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>10-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Why SEO Matters for Service Discovery</h3>
+                                    <p class="blog-desc">
+                                        Discover how keyword research and useful content can help users find relevant
+                                        digital services through search engines.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_5.png" alt="SEO Services">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>12-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Effective Lead Management for Businesses</h3>
+                                    <p class="blog-desc">
+                                        Learn how structured lead tracking, timely follow-ups, and organized records can
+                                        support business development.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_4.png" alt="Lead Management">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="blog-page">
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>05-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Digital Marketing Strategies for Growth</h3>
+                                    <p class="blog-desc">
+                                        Explore effective digital marketing strategies that help brands improve
+                                        visibility
+                                        and reach their target audience.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_5.png" alt="Digital Marketing">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>20-07-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">The Future of Business Automation</h3>
+                                    <p class="blog-desc">
+                                        Understand how business automation reduces manual work and improves operational
+                                        efficiency.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_6.png" alt="Business Automation">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>12-07-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Improving Customer Experience with AI</h3>
+                                    <p class="blog-desc">
+                                        Discover how AI-powered solutions can create better customer experiences and
+                                        smarter business interactions.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_3.png" alt="AI Customer Experience">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>08-10-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">How to Choose the Right Digital Services</h3>
+                                    <p class="blog-desc">
+                                        Discover how to identify business needs, explore service options, and find
+                                        digital
+                                        solutions that align with your goals.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_1.png" alt="Digital Services">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>28-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">From Customer Enquiries to Business Leads</h3>
+                                    <p class="blog-desc">
+                                        Understand how enquiries become leads and how organized follow-ups can help
+                                        businesses manage potential opportunities.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_2.png" alt="Customer Enquiries">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>15-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">How AI Supports Lead Conversion Prediction</h3>
+                                    <p class="blog-desc">
+                                        Learn how machine learning can analyze lead data to estimate conversion
+                                        potential
+                                        and support smarter business decisions.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_3.png" alt="AI Lead Conversion">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="blog-page">
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>25-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Building a Better Customer Enquiry Journey</h3>
+                                    <p class="blog-desc">
+                                        Explore ways to make service enquiries simpler, clearer, and more convenient for
+                                        potential customers.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_4.png" alt="Customer Journey">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>10-09-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Why SEO Matters for Service Discovery</h3>
+                                    <p class="blog-desc">
+                                        Discover how keyword research and useful content can help users find relevant
+                                        digital services through search engines.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_5.png" alt="SEO Services">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>12-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Effective Lead Management for Businesses</h3>
+                                    <p class="blog-desc">
+                                        Learn how structured lead tracking, timely follow-ups, and organized records can
+                                        support business development.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_4.png" alt="Lead Management">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>05-08-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Digital Marketing Strategies for Growth</h3>
+                                    <p class="blog-desc">
+                                        Explore effective digital marketing strategies that help brands improve
+                                        visibility
+                                        and reach their target audience.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_5.png" alt="Digital Marketing">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>20-07-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">The Future of Business Automation</h3>
+                                    <p class="blog-desc">
+                                        Understand how business automation reduces manual work and improves operational
+                                        efficiency.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_6.png" alt="Business Automation">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                                <div class="blog-card">
+                                    <div class="blog-date">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>12-07-2026</span>
+                                    </div>
+                                    <h3 class="blog-title">Improving Customer Experience with AI</h3>
+                                    <p class="blog-desc">
+                                        Discover how AI-powered solutions can create better customer experiences and
+                                        smarter business interactions.
+                                    </p>
+                                    <div class="blog-img">
+                                        <img src="../blog_images/growth_3.png" alt="AI Customer Experience">
+                                        <a href="../pages/blog.html" class="blog-btn">Read More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="blog-controls">
+
+                    <div class="blog-dots" style="display:flex;align-items:center;gap:6px;">
+
+                        <button type="button" class="blog-dot" data-page="0" aria-label="Page 1"
+                            style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid #d1d5db;border-radius:9999px;background:black;color: white;font-size:15px;line-height:1;cursor:pointer;outline:none;">
+                            1
+                        </button>
+
+                        <button type="button" class="blog-dot" data-page="1" aria-label="Page 2"
+                            style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid #d1d5db;border-radius:9999px;background:transparent;color:#6b7280;font-size:10px;line-height:1;cursor:pointer;outline:none;">
+                            2
+                        </button>
+
+                        <button type="button" class="blog-dot" data-page="2" aria-label="Page 3"
+                            style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid #d1d5db;border-radius:9999px;background:transparent;color:#6b7280;font-size:10px;line-height:1;cursor:pointer;outline:none;">
+                            3
+                        </button>
+
+                    </div>
+                    <div class="blog-nav">
+                        <button type="button" class="blog-prev" aria-label="Previous">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button type="button" class="blog-next" aria-label="Next">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-white py-14 lg:py-20 overflow-x-hidden">
+            <div class="mx-auto max-w-300 px-5 lg:px-20">
+
+                <div class="mb-8 flex flex-col justify-between gap-8 md:flex-row md:items-end md:gap-10">
+
+                    <div class="min-w-0">
+                        <p class="mb-3 text-[15px] uppercase tracking-[2px] text-gray-400">
+                            Testimonials
+                        </p>
+
+                        <h2 class="max-w-100 text-[20px] font-medium leading-[1.05] tracking-[-1px] md:text-[40px]">
+                            Experiences That Build Trust
+                        </h2>
+                    </div>
+
+                    <p class="max-w-100 text-[12px] leading-4 text-gray-400">
+                        Discover how SmartLead makes digital service discovery easier, simplifies customer enquiries,
+                        and helps businesses connect with the right service providers.
+                    </p>
+
+                </div>
+
+                <div class="swiper testimonial-swiper w-full min-w-0">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        “SmartLead made it easier to discover digital services that matched my
+                                        business needs.”
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/ananya-roy.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Ananya Roy</p>
+                                        <p class="text-[12px] text-gray-400">Small Buisness Owner</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.05)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        Finding suitable service providers and submitting enquiries feels simple and
+                                        convenient
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/rahul-sharma.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Rahul Sharma</p>
+                                        <p class="text-[12px] text-gray-400">Startup Founder</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        SmartLead brings different digital service options together in one
+                                        easy-to-explore
+                                        platform
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/priya-das.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Priya Das</p>
+                                        <p class="text-[12px] text-gray-400">Marketting Professional</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        “SmartLead made it easier to discover digital services that matched my
+                                        business needs.”
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/ananya-roy.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Ananya Roy</p>
+                                        <p class="text-[12px] text-gray-400">Small Buisness Owner</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.05)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        Finding suitable service providers and submitting enquiries feels simple and
+                                        convenient
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/rahul-sharma.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Rahul Sharma</p>
+                                        <p class="text-[12px] text-gray-400">Startup Founder</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        SmartLead brings different digital service options together in one
+                                        easy-to-explore
+                                        platform
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/priya-das.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Priya Das</p>
+                                        <p class="text-[12px] text-gray-400">Marketting Professional</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        “SmartLead made it easier to discover digital services that matched my
+                                        business needs.”
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/ananya-roy.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Ananya Roy</p>
+                                        <p class="text-[12px] text-gray-400">Small Buisness Owner</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.05)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        Finding suitable service providers and submitting enquiries feels simple and
+                                        convenient
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/rahul-sharma.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Rahul Sharma</p>
+                                        <p class="text-[12px] text-gray-400">Startup Founder</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="h-full min-w-0">
+
+                                <div
+                                    class="min-h-35 h-full rounded-lg border border-gray-200 bg-white p-5 shadow-[0_5px_25px_rgba(0,0,0,0.04)]">
+                                    <p class="text-[12px] leading-4 text-gray-500">
+                                        SmartLead brings different digital service options together in one
+                                        easy-to-explore
+                                        platform
+                                    </p>
+
+                                    <div class="mt-5 flex gap-1 text-[8px]">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 flex items-center gap-2">
+                                    <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                                        <img src="../blog_images/priya-das.png" alt=""
+                                            class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[12px] font-semibold">Priya Das</p>
+                                        <p class="text-[12px] text-gray-400">Marketting Professional</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end gap-2">
+                    <button
+                        class="testimonial-prev flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-[18px] cursor-pointer">
+                        <i class="fa-solid fa-caret-left"></i>
+                    </button>
+
+                    <button
+                        class="testimonial-next flex h-10 w-10 items-center justify-center rounded-full bg-black text-[18px] text-white cursor-pointer">
+                        <i class="fa-solid fa-caret-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="bg-linear-to-br from-[#67baf5] via-[#4eaff2] to-[#a5d8fa]">
+
+            <div class="mx-auto max-w-270 px-5 py-14 lg:px-10 lg:py-20">
+
+                <p class="text-[15px] font-semibold tracking-[1px] text-white">
+                    Your Next Step
+                </p>
+
+                <div class="mt-3 flex flex-col gap-8 md:justify-between">
+
+                    <div>
+                        <h2
+                            class="max-w-162.5 text-[20px] font-semibold leading-[1.02] tracking-[-1px] text-white md:text-[35px] lg:text-[40px]">
+                            Ready to Find the Right Digital Solutions for Your Business?
+                        </h2>
+
+                        <p class="mt-5 max-w-139 text-[12px] leading-5 text-white font-medium">
+                            Explore the right digital solutions for your goals, discover services across multiple
+                            categories, and connect with service providers to bring your next big idea to life.
+                        </p>
+                    </div>
+
+                    <a href="../pages/blog.html"
+                        class="w-fit shrink-0 rounded-full bg-white px-5 py-2.5 text-[12px] font-bold text-black">
+                        Learn More
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="overflow-x-hidden bg-black text-white">
+
+            <div class="mx-auto max-w-350 px-5 py-12 lg:px-10">
+
+                <div class="grid grid-cols-1 gap-8 min-[480px]:grid-cols-2 lg:grid-cols-4">
+
+                    <div class="min-w-0">
+                        <div class="font-extrabold tracking-[-0.5px] text-white">
+                            <a href="../pages/blog.html" target="_self">
+                                <img src="../blog_images/footer-logo.png" alt="" class="max-w-full">
+                            </a>
+                        </div>
+
+                        <p class="mt-4 max-w-45 text-[12px] leading-4 text-white-400">
+                            The world's leading Al-powered platform for connecting businesses with exceptional digital
+                            service providers.
+                        </p>
+
+                        <div class="mt-5 flex gap-5">
+                            <a href="https://in.linkedin.com/" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+
+                            <a href="https://x.com/?lang=en" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/?hl=en" target="_blank"
+                                class="flex items-center justify-center text-[15px]">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Quick Links
+                        </h4>
+
+                        <div class="flex flex-col gap-2 text-[13px] text-white-400">
+                            <a href="#">Home</a>
+                            <a href="../pages/about.html" target="_self">About Us</a>
+                            <a href="../pages/services.html" target="_self">Services</a>
+                            <a href="../pages/blog.html" target="_self">Blog</a>
+                            <a href="contact.html" target="_self">Contact</a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Services
+                        </h4>
+
+                        <div class="flex flex-col gap-2 text-[13px] text-white-400">
+                            <a href="#">Web Development</a>
+                            <a href="#">Mobile App Solution</a>
+                            <a href="#">UI/UX Strategy</a>
+                            <a href="#">Digital Marketing</a>
+                            <a href="#">AI & Data Science</a>
+                        </div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <h4 class="mb-4 text-[18px] font-semibold">
+                            Contact Us
+                        </h4>
+
+                        <div class="flex flex-col gap-3 text-[13px] leading-5 text-white-400">
+                            <span class="wrap-break-word">
+                                <i class="fa-regular fa-envelope"></i>
+                                hello@smartlead.com
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-phone"></i>
+                                +91 00000 12345
+                            </span>
+
+                            <span class="wrap-break-word">
+                                <i class="fa-solid fa-location-dot"></i>
+                                12 Innovation Avenue, Sector V, Salt Lake
+                            </span>
+                        </div>
+
+                        <p class="mt-5">Subscribe to our NewsLetter</p>
+
+                        <div
+                            class="mt-5 flex w-full min-w-0 items-center justify-between gap-2 rounded-full border border-gray-700 px-3 py-2 text-[12px]">
+
+                            <div class="flex min-w-0 flex-1 items-center gap-2">
+                                <i class="fa-regular fa-envelope shrink-0"></i>
+                                <form action="" id="emailForm">
+                                    <input type="email" id="mail" placeholder="Enter your email address"
+                                        class="w-full min-w-0 bg-transparent outline-none">
+                                    <p id="emailError" style="color: red;"></p>
+                                </form>
+                            </div>
+
+                            <div class="shrink-0">
+                                <a href="" id="emailLink">
+                                    <i class="fa-solid fa-location-arrow"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mt-10 flex flex-col justify-between gap-5 border-t border-gray-800 pt-5 text-[13px] text-white md:flex-row md:items-center">
+
+                    <p>
+                        &copy; 2026 <a href="../pages/blog.html" target="_self">SmartLead</a>. All rights reserved.
+                    </p>
+
+                    <div class="flex flex-wrap gap-x-6 gap-y-3 md:gap-10">
+                        <a href="../pages/blog.html">Privacy Policy</a>
+                        <a href="../pages/blog.html">Terms of Service</a>
+                        <a href="../pages/blog.html">Cookies Settings</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+    <script src="../js/blog.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/services.js"></script>
+</body>
+
+</html>
