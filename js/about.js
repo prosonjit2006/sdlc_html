@@ -12,7 +12,6 @@ const testimonialSwiper = new Swiper('.testimonial-swiper', {
         640: { slidesPerView: 2, spaceBetween: 20 },
         1024: { slidesPerView: 3, spaceBetween: 30 },
     },
-<<<<<<< HEAD
 });
 
 let accordionButtons = document.querySelectorAll(".accordion-btn");
@@ -51,6 +50,3 @@ let accordionButtons = document.querySelectorAll(".accordion-btn");
     });
 
     
-=======
-});
->>>>>>> 7c6f844e28250065fa20dd17462596ffd65e4506
